@@ -23,7 +23,7 @@ async function getAnimeNames(searchedTitle) {
 	}
 }
 
-export default function Layout({ children }) {
+export default function Layout({ children, manga }) {
 	const [searchedTitle, setTitle] = useState("");
 	const [searchedResults, setResults] = useState([]);
 	const router = useRouter();
@@ -43,10 +43,16 @@ export default function Layout({ children }) {
 	return (
 		<>
 			<div>
-				<Link href="/" className={styles.home_page_heading}>
-					<h1>Begin your anime journey! Today!</h1>
-					<h3>Search for your first anime!</h3>
-				</Link>
+				{!manga ? (
+					<Link href="/" className={styles.home_page_heading}>
+						<h1>Search for your favourite anime!</h1>
+						<h3>Read the manga!</h3>
+					</Link>
+				) : (
+					<Link href="/" className={styles.home_page_heading}>
+						<h1 className={styles.manga_heading}>Manga Next</h1>
+					</Link>
+				)}
 			</div>
 			<section className={styles.search_bar_section}>
 				<div className={styles.search_bar_container} onSubmit={handleSubmit}>

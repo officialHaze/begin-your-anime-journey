@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Allison&family=Questrial&display=swap");
+
 .main_container {
 	display: flex;
 	flex-wrap: wrap;
@@ -41,6 +43,20 @@
 	font-weight: bolder;
 }
 
+.manga_btn {
+	padding: 0.85rem 1rem;
+	font-size: 1.5rem;
+	border-radius: 0.5rem;
+	border: none;
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 0.5rem;
+	color: #5f9df7;
+	font-family: "Questrial", sans-serif;
+	word-spacing: 0.5rem;
+	letter-spacing: 0.25rem;
+}
+
 @media only screen and (max-width: 500px) {
 	.description {
 		padding: 0 1rem;
@@ -74,5 +90,10 @@
 
 	.anime_image_container {
 		padding: 1rem;
+	}
+
+	.manga_btn{
+		font-size: 1.2rem;
+		text-align: center;
 	}
 }

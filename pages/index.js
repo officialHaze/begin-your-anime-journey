@@ -13,7 +13,10 @@ export default function Home({ data }) {
 					{data.map(({ id, attributes }) => {
 						const { canonicalTitle } = attributes;
 						return (
-							<AnimatePresence key={id}>
+							<AnimatePresence
+								key={id}
+								style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+							>
 								<motion.div
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}

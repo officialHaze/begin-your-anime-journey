@@ -4,6 +4,7 @@ import rating from "@/public/icons/rating.png";
 import Image from "next/image";
 import styles from "@/styles/AnimeDetails.module.css";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function Anime({ data }) {
 	const [result] = data.data;
@@ -82,6 +83,11 @@ export default function Anime({ data }) {
 								<Image src={rating} width={40} height={40} alt="rating icon" />
 								<p>{averageRating}</p>
 							</div>
+						</div>
+						<div>
+							<Link href={`/manga/${canonicalTitle}`}>
+								<p className={styles.manga_btn}>Read Manga</p>
+							</Link>
 						</div>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Allison&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Allison&family=Michroma&family=Questrial&display=swap");
 
 .search_bar_section {
-	padding: 5rem;
+	padding: 3rem;
 }
 
 .search_bar_container {
@@ -60,21 +60,36 @@
 }
 
 .home_page_heading {
-	font-family: "Allison", cursive;
+	font-family: "Michroma", sans-serif;
 	text-align: center;
-	padding: 5rem;
-	font-size: 2rem;
+	font-size: 1.25rem;
 	word-spacing: 0.25rem;
+	letter-spacing: 0.25rem;
+	font-weight: lighter;
+}
+
+.home_page_heading > h1 {
+	padding-top: 5rem;
+}
+
+.home_page_heading > h3{
+	padding: 2rem 0;
+}
+
+.manga_heading {
+	font-family: "Michroma", sans-serif;
+	word-spacing: 0.5rem;
+	letter-spacing: 0.5rem;
 	font-weight: lighter;
 }
 
 @media only screen and (max-width: 500px) {
 	.home_page_heading {
-		font-size: 1.5rem;
+		font-size: 0.7rem;
 	}
 
-	.home_page_heading > h1{
-		padding: 0 2rem;
+	.home_page_heading > h1 {
+		padding: 4rem 0 0;
 	}
 
 	.search_bar {
