@@ -2,8 +2,23 @@ import axios from "axios";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import styles from "@/styles/Manga_Pages.module.css";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function manga_chapter({ baseUrl, hash, imagesArray }) {
+	const [image, setImage] = useState("");
+
+	useEffect(() => {
+		async function getImage() {
+			const { data } = await axios({
+				method: "GET",
+				url: `${baseUrl}/data/${hash}/${imagesArray}`,
+			});
+			setImage(data);
+		}
+		getImage();
+	}, []);
+
 	return (
 		<main className={styles.main}>
 			<Splide
@@ -16,7 +31,8 @@ export default function manga_chapter({ baseUrl, hash, imagesArray }) {
 					pagination: false,
 				}}
 			>
-				{imagesArray.map((image) => {
+				<img src={`${baseUrl}/data/${hash}/${imagesArray}`} alt="image" />
+				{/* {imagesArray.map((image) => {
 					return (
 						<SplideSlide
 							key={image}
@@ -30,7 +46,7 @@ export default function manga_chapter({ baseUrl, hash, imagesArray }) {
 							/>
 						</SplideSlide>
 					);
-				})}
+				})} */}
 			</Splide>
 		</main>
 	);
@@ -42,7 +58,7 @@ export async function getServerSideProps({ query }) {
 		const { data } = await axios.get(`https://api.mangadex.org/at-home/server/${id}`);
 		const { chapter, baseUrl } = data;
 		const { hash } = chapter;
-		const imagesArray = chapter.data;
+		const imagesArray = chapter.data[0];
 		return {
 			props: {
 				baseUrl,
