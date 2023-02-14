@@ -5,19 +5,31 @@ import styles from "@/styles/Manga_Pages.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function manga_chapter({ baseUrl, hash, imagesArray }) {
-	const [image, setImage] = useState("");
+export default function manga_chapter({ imageUrl }) {
+	// const [image, setImage] = useState("");
+	console.log(imageUrl);
+	// useEffect(() => {
+	// 	async function getImageFromApi() {
+	// 		const { data } = await axios.post("http://localhost:3000/api/image_proxy", {
+	// 			uri: `${baseUrl}/data-saver/${hash}/${imagesArray}`,
+	// 		});
+	// 		const blob = new Blob([data], { type: "image/png" });
+	// 		const imageUrl = URL.createObjectURL(blob);
+	// 		setImage(imageUrl);
+	// 	}
+	// 	getImageFromApi();
+	// 	async function getImage() {
+	// 		const { data } = await axios({
+	// 			method: "GET",
+	// 			url: `${baseUrl}/data-saver/${hash}/${imagesArray}`,
+	// 		});
 
-	useEffect(() => {
-		async function getImage() {
-			const { data } = await axios({
-				method: "GET",
-				url: `${baseUrl}/data/${hash}/${imagesArray}`,
-			});
-			setImage(data);
-		}
-		getImage();
-	}, []);
+	// 		const blob = new Blob([data], { type: "image/jpg" });
+	// 		const imageUrl = URL.createObjectURL(blob);
+	// 		setImage(imageUrl);
+	// 	}
+	// 	getImage();
+	// }, []);
 
 	return (
 		<main className={styles.main}>
@@ -31,7 +43,7 @@ export default function manga_chapter({ baseUrl, hash, imagesArray }) {
 					pagination: false,
 				}}
 			>
-				<img src={`${baseUrl}/data-saver/${hash}/${imagesArray}`} alt="image" />
+				<img src={imageUrl} alt="image" width={300} height={300} />
 				{/* {imagesArray.map((image) => {
 					return (
 						<SplideSlide
@@ -59,11 +71,13 @@ export async function getServerSideProps({ query }) {
 		const { chapter, baseUrl } = data;
 		const { hash } = chapter;
 		const imagesArray = chapter.dataSaver[0];
+		const image = await axios.get(`${baseUrl}/data-saver/${hash}/${imagesArray}`);
+		const blob = new Blob([image], { type: "image/jpg" });
+		const imageUrl = URL.createObjectURL(blob);
+
 		return {
 			props: {
-				baseUrl,
-				hash,
-				imagesArray,
+				imageUrl,
 			},
 		};
 	} catch (err) {
