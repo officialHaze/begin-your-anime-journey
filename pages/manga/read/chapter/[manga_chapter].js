@@ -31,7 +31,7 @@ export default function manga_chapter({ baseUrl, hash, imagesArray }) {
 					pagination: false,
 				}}
 			>
-				<img src={`${baseUrl}/data/${hash}/${imagesArray}`} alt="image" />
+				<img src={`${baseUrl}/data-saver/${hash}/${imagesArray}`} alt="image" />
 				{/* {imagesArray.map((image) => {
 					return (
 						<SplideSlide
