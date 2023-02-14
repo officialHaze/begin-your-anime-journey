@@ -58,7 +58,7 @@ export async function getServerSideProps({ query }) {
 		const { data } = await axios.get(`https://api.mangadex.org/at-home/server/${id}`);
 		const { chapter, baseUrl } = data;
 		const { hash } = chapter;
-		const imagesArray = chapter.data[0];
+		const imagesArray = chapter.dataSaver[0];
 		return {
 			props: {
 				baseUrl,
