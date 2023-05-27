@@ -70,9 +70,12 @@ export async function getServerSideProps({ query }) {
   try {
     const { data } = await axios({
       method: "POST",
-      url: `http://localhost:8000/api/chapters/`,
+      url: `${process.env.MDO_ENDPOINT}/api/chapters/`,
       data: {
         manga_id: id,
+      },
+      headers: {
+        "api-key": process.env.API_KEY,
       },
     });
     let results = data.chapter_detail;

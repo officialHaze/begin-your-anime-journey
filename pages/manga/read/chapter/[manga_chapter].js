@@ -52,12 +52,21 @@ export default function manga_chapter({ results }) {
                 alignItems: "center",
               }}
             >
-              <img
-                className={styles.pages}
-                src={image.img_url}
-                alt={image.alt_title}
-                style={{ width: "30%", height: "100%" }}
-              />
+              <div>
+                <div>
+                  <img
+                    className={styles.pages}
+                    src={image.img_url}
+                    alt={image.alt_title}
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
+                <div>
+                  <p style={{ padding: "1rem 0" }}>
+                    {i + 1 !== results.length ? i + 1 : "End"}
+                  </p>
+                </div>
+              </div>
             </SplideSlide>
           );
         })}
@@ -69,10 +78,18 @@ export default function manga_chapter({ results }) {
 export async function getServerSideProps({ query }) {
   const { chapId, mangaId } = query;
   try {
-    const { data } = await axios.post(`http://localhost:8000/api/chapter/`, {
-      manga_id: mangaId,
-      chapter_id: chapId,
-    });
+    const { data } = await axios.post(
+      `${process.env.MDO_ENDPOINT}/api/chapter/`,
+      {
+        manga_id: mangaId,
+        chapter_id: chapId,
+      },
+      {
+        headers: {
+          "api-key": process.env.API_KEY,
+        },
+      }
+    );
     const results = data.image_detail;
     // const { chapter, baseUrl } = data;
     // const { hash } = chapter;

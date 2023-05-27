@@ -54,9 +54,17 @@ export default function manga_title({ results }) {
 export async function getServerSideProps({ params }) {
   const { manga_title } = params;
   try {
-    const { data } = await axios.post(`http://localhost:8000/api/search/`, {
-      manga_name: manga_title.toLowerCase(),
-    });
+    const { data } = await axios.post(
+      `${process.env.MDO_ENDPOINT}/api/search/`,
+      {
+        manga_name: manga_title.toLowerCase(),
+      },
+      {
+        headers: {
+          "api-key": process.env.API_KEY,
+        },
+      }
+    );
 
     const results = data.detail;
     return {
