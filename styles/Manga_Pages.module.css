@@ -1,11 +1,17 @@
 .main {
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
+  min-height: 100vh;
 }
 
 @media only screen and (max-width: 600px) {
-	.pages {
-		width: 95% !important;
-	}
+  /* .pages {
+    width: 30% !important;
+  } */
+  /* .splide_slide {
+    width: 100% !important;
+	height: 100vh !important;
+  } */
+
+  .img_container{
+	height: 100vh;
+  }
 }

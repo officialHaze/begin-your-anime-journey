@@ -33,7 +33,7 @@ export default function manga_chapter({ results }) {
   return (
     <main className={styles.main}>
       <Splide
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ display: "flex", alignItems: "center", height: "100%" }}
         options={{
           perPage: 1,
           drag: true,
@@ -45,6 +45,7 @@ export default function manga_chapter({ results }) {
         {results.map((image, i) => {
           return (
             <SplideSlide
+              className={styles.splide_slide}
               key={i}
               style={{
                 display: "flex",
@@ -53,7 +54,7 @@ export default function manga_chapter({ results }) {
               }}
             >
               <div>
-                <div>
+                <div className={styles.img_container}>
                   <img
                     className={styles.pages}
                     src={image.img_url}
